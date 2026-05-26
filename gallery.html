@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | Education Library</title>
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f7fb;
+    overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+    background:rgba(5,10,25,0.95);
+    backdrop-filter:blur(10px);
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+}
+
+.logo{
+    color:#fff;
+    font-size:30px;
+    font-weight:800;
+}
+
+.logo span{
+    color:#00d9ff;
+}
+
+.nav-links{
+    display:flex;
+    gap:35px;
+}
+
+.nav-links a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+    position:relative;
+    transition:0.3s;
+}
+
+.nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0%;
+    height:2px;
+    background:#00d9ff;
+    transition:0.4s;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+.nav-links a:hover{
+    color:#00d9ff;
+}
+
+.menu-btn{
+    color:#fff;
+    font-size:28px;
+    cursor:pointer;
+    display:none;
+}
+
+/* ================= HERO SECTION ================= */
+
+.gallery-hero{
+    width:100%;
+    height:65vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),
+    url('https://raw.githubusercontent.com/Anuj1-web/Library/refs/heads/main/the-modern-buddha-s-library-marimata-chouraha-indore-libraries-7k4q6qvhck.avif');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+    color:#fff;
+    padding:20px;
+}
+
+.gallery-hero-content h1{
+    font-size:72px;
+    margin-bottom:20px;
+    font-weight:800;
+}
+
+.gallery-hero-content p{
+    font-size:19px;
+    max-width:850px;
+    line-height:1.9;
+    color:#ddd;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    padding:100px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.section-title h2{
+    font-size:48px;
+    color:#08101f;
+    margin-bottom:15px;
+}
+
+.section-title p{
+    color:#666;
+    font-size:17px;
+}
+
+/* ================= FEATURE STRIP ================= */
+
+.feature-strip{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-top:-70px;
+    position:relative;
+    z-index:10;
+    padding:0 8%;
+}
+
+.strip-card{
+    background:#fff;
+    border-radius:25px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.12);
+    transition:0.4s;
+}
+
+.strip-card:hover{
+    transform:translateY(-10px);
+}
+
+.strip-card i{
+    width:80px;
+    height:80px;
+    line-height:80px;
+    border-radius:50%;
+    background:#00d9ff;
+    color:#000;
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+.strip-card h3{
+    color:#08101f;
+    margin-bottom:10px;
+}
+
+.strip-card p{
+    color:#666;
+    line-height:1.8;
+}
+
+/* ================= MASONRY GALLERY ================= */
+
+.gallery-container{
+    columns:3 320px;
+    column-gap:20px;
+}
+
+.gallery-item{
+    position:relative;
+    margin-bottom:20px;
+    overflow:hidden;
+    border-radius:25px;
+    break-inside:avoid;
+    cursor:pointer;
+}
+
+.gallery-item img{
+    width:100%;
+    display:block;
+    border-radius:25px;
+    transition:0.5s;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.08);
+}
+
+.gallery-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
+    opacity:0;
+    transition:0.5s;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:30px;
+}
+
+.gallery-item:hover .gallery-overlay{
+    opacity:1;
+}
+
+.gallery-overlay h3{
+    color:#fff;
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.gallery-overlay p{
+    color:#ddd;
+    line-height:1.8;
+}
+
+/* ================= HIGHLIGHT SECTION ================= */
+
+.highlight-section{
+    background:#08101f;
+    color:#fff;
+}
+
+.highlight-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:50px;
+    align-items:center;
+}
+
+.highlight-image img{
+    width:100%;
+    border-radius:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.highlight-text h2{
+    font-size:52px;
+    margin-bottom:25px;
+}
+
+.highlight-text p{
+    color:#ccc;
+    line-height:2;
+    margin-bottom:25px;
+    font-size:17px;
+}
+
+.stats{
+    display:flex;
+    flex-wrap:wrap;
+    gap:25px;
+    margin-top:35px;
+}
+
+.stat-box{
+    background:rgba(255,255,255,0.08);
+    padding:25px;
+    border-radius:20px;
+    min-width:150px;
+    text-align:center;
+}
+
+.stat-box h3{
+    font-size:38px;
+    color:#00d9ff;
+    margin-bottom:10px;
+}
+
+/* ================= LIGHTBOX ================= */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    padding:20px;
+}
+
+.lightbox img{
+    max-width:95%;
+    max-height:90vh;
+    border-radius:20px;
+}
+
+.lightbox.active{
+    display:flex;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#050b18;
+    color:#bbb;
+    text-align:center;
+    padding:30px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:991px){
+
+    .nav-links{
+        position:absolute;
+        top:90px;
+        right:-100%;
+        width:280px;
+        height:calc(100vh - 90px);
+        background:#08101f;
+        flex-direction:column;
+        padding:50px 30px;
+        transition:0.4s;
+    }
+
+    .nav-links.active{
+        right:0;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .gallery-hero-content h1{
+        font-size:54px;
+    }
+
+    .highlight-text h2{
+        font-size:42px;
+    }
+}
+
+@media(max-width:768px){
+
+    .gallery-hero{
+        height:55vh;
+    }
+
+    .gallery-hero-content h1{
+        font-size:42px;
+    }
+
+    .section-title h2{
+        font-size:36px;
+    }
+
+    .highlight-text h2{
+        font-size:34px;
+    }
+}
+
+@media(max-width:500px){
+
+    .navbar{
+        padding:18px 5%;
+    }
+
+    .section{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .feature-strip{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .gallery-hero-content h1{
+        font-size:34px;
+    }
+
+    .gallery-hero-content p{
+        font-size:16px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Education <span>Library</span>
+        </div>
+
+        <div class="nav-links" id="navLinks">
+
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+
+        </div>
+
+        <div class="menu-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+        </div>
+
+    </nav>
+
+</header>
+
+<!-- ================= HERO SECTION ================= -->
+
+<section class="gallery-hero">
+
+    <div class="gallery-hero-content">
+
+        <h1>Library Gallery</h1>
+
+        <p>
+            Explore the modern environment, premium facilities
+            and inspiring learning atmosphere of Education Library.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ================= FEATURE STRIP ================= -->
+
+<div class="feature-strip">
+
+    <div class="strip-card">
+
+        <i class="fas fa-clock"></i>
+
+        <h3>24/7 Access</h3>
+
+        <p>Study anytime with uninterrupted library access.</p>
+
+    </div>
+
+    <div class="strip-card">
+
+        <i class="fas fa-snowflake"></i>
+
+        <h3>Fully AC</h3>
+
+        <p>Comfortable air-conditioned study halls.</p>
+
+    </div>
+
+    <div class="strip-card">
+
+        <i class="fas fa-wifi"></i>
+
+        <h3>Fast WiFi</h3>
+
+        <p>High-speed internet for research and learning.</p>
+
+    </div>
+
+    <div class="strip-card">
+
+        <i class="fas fa-book-open"></i>
+
+        <h3>Modern Space</h3>
+
+        <p>Peaceful and professional learning environment.</p>
+
+    </div>
+
+</div>
+
+<!-- ================= GALLERY SECTION ================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>Explore Our Library</h2>
+
+        <p>
+            A modern gallery experience showcasing the beauty of Education Library.
+        </p>
+
+    </div>
+
+    <div class="gallery-container">
+
+        <!-- IMAGE 1 -->
+        <div class="gallery-item">
+            <img src="https://raw.githubusercontent.com/Anuj1-web/Library/refs/heads/main/the-modern-buddha-s-library-marimata-chouraha-indore-libraries-7k4q6qvhck.avif" alt="">
+            <div class="gallery-overlay">
+                <h3>Premium Study Hall</h3>
+                <p>Modern and peaceful learning environment.</p>
+            </div>
+        </div>
+
+        <!-- IMAGE 2 -->
+        <div class="gallery-item">
+            <img src="https://github.com/Anuj1-web/Library/blob/main/212499490_144515547749976_7310028628513821394_n.jpg?raw=true" alt="">
+            <div class="gallery-overlay">
+                <h3>Focused Learning</h3>
+                <p>Comfortable seating and silent study areas.</p>
+            </div>
+        </div>
+
+        <!-- IMAGE 3 -->
+        <div class="gallery-item">
+            <img src="https://github.com/Anuj1-web/Library/blob/main/130728826_1486488445074237_7820131969550470725_n.jpg?raw=true" alt="">
+            <div class="gallery-overlay">
+                <h3>Professional Atmosphere</h3>
+                <p>Designed for productivity and concentration.</p>
+            </div>
+        </div>
+
+        <!-- IMAGE 4 -->
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1200&auto=format&fit=crop" alt="">
+            <div class="gallery-overlay">
+                <h3>Book Collections</h3>
+                <p>Educational and competitive resources available.</p>
+            </div>
+        </div>
+
+        <!-- IMAGE 5 -->
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200&auto=format&fit=crop" alt="">
+            <div class="gallery-overlay">
+                <h3>Modern Interior</h3>
+                <p>Elegant design with premium facilities.</p>
+            </div>
+        </div>
+
+        <!-- IMAGE 6 -->
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=1200&auto=format&fit=crop" alt="">
+            <div class="gallery-overlay">
+                <h3>Smart Study Zone</h3>
+                <p>Technology-enabled educational environment.</p>
+            </div>
+        </div>
+
+        <!-- IMAGE 7 -->
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1200&auto=format&fit=crop" alt="">
+            <div class="gallery-overlay">
+                <h3>Reading Space</h3>
+                <p>Quiet atmosphere for uninterrupted study.</p>
+            </div>
+        </div>
+
+        <!-- IMAGE 8 -->
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1526243741027-444d633d7365?q=80&w=1200&auto=format&fit=crop" alt="">
+            <div class="gallery-overlay">
+                <h3>Student Friendly</h3>
+                <p>Designed for comfort and academic success.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= HIGHLIGHT SECTION ================= -->
+
+<section class="section highlight-section">
+
+    <div class="highlight-container">
+
+        <div class="highlight-image">
+
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop" alt="">
+
+        </div>
+
+        <div class="highlight-text">
+
+            <h2>More Than Just A Library</h2>
+
+            <p>
+                Education Library provides students with a premium learning experience
+                through modern infrastructure, peaceful study zones and advanced facilities.
+            </p>
+
+            <p>
+                Every corner of our library is designed to inspire focus,
+                motivation and academic excellence.
+            </p>
+
+            <div class="stats">
+
+                <div class="stat-box">
+                    <h3>24/7</h3>
+                    <p>Open Access</p>
+                </div>
+
+                <div class="stat-box">
+                    <h3>100%</h3>
+                    <p>AC Facility</p>
+                </div>
+
+                <div class="stat-box">
+                    <h3>Fast</h3>
+                    <p>WiFi Zone</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © 2026 Education Library | Premium Gallery Experience
+
+</footer>
+
+<!-- ================= LIGHTBOX ================= -->
+
+<div class="lightbox" id="lightbox">
+
+    <img src="" id="lightbox-img">
+
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+// MOBILE MENU
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.onclick = () =>{
+
+    navLinks.classList.toggle("active");
+
+};
+
+// LIGHTBOX
+
+const galleryImages = document.querySelectorAll(".gallery-item img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+galleryImages.forEach(img =>{
+
+    img.addEventListener("click", ()=>{
+
+        lightbox.classList.add("active");
+        lightboxImg.src = img.src;
+
+    });
+
+});
+
+lightbox.addEventListener("click", ()=>{
+
+    lightbox.classList.remove("active");
+
+});
+
+</script>
+
+</body>
+</html>
