@@ -472,7 +472,15 @@ Become a member of Education Library.
 <label>Due Date</label>
 <input type="date" id="nextDueDate" required>
 </div>
-
+<div class="input-group">
+<label>Seat Number</label>
+<input
+type="number"
+id="seatNumber"
+required
+min="1"
+max="999">
+</div>
 <div class="input-group">
 <label>Photo</label>
 <input
@@ -730,32 +738,12 @@ window.location.href =
 "student.html?id=" + id;
 
 }
-
-/* ==========================
-   LIBRARY ID GENERATOR
-========================== */
-
-function generateLibraryId(){
-
-let counter =
-localStorage.getItem("libraryCounter");
-
-if(!counter){
-counter = 1;
-}else{
-counter = parseInt(counter) + 1;
-}
-
-localStorage.setItem(
-"libraryCounter",
-counter
-);
+function generateLibraryId(seatNumber){
 
 return "EL26" +
-String(counter).padStart(5,"0");
+String(seatNumber).padStart(5,"0");
 
 }
-
 /* ==========================
  /* ==========================
    REGISTRATION
@@ -774,8 +762,16 @@ JSON.parse(
 localStorage.getItem("students")
 ) || [];
 
+const seatNumber =
+document
+.getElementById("seatNumber")
+.value
+.trim();
+
 const libraryId =
-generateLibraryId();
+generateLibraryId(
+seatNumber
+);
 
 
 let photoData = "";
@@ -794,11 +790,24 @@ photoInput.files[0]
 );
 
 }
+const existingSeat =
+students.find(
+s => String(s.seatNumber) === String(seatNumber)
+);
 
+if(existingSeat){
+
+alert(
+"Seat Number already assigned."
+);
+
+return;
+
+}
 const student = {
 
 id: libraryId,
-
+seatNumber: seatNumber,
 name:
 document
 .getElementById("name")
