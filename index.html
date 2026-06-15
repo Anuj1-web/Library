@@ -3,504 +3,356 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Education Library</title>
 
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
+/* ===========================
+   RESET
+=========================== */
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
 }
 
 html{
-    scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-    overflow-x:hidden;
-    background:#0a0f1f;
+background:#0b1120;
+color:white;
+overflow-x:hidden;
 }
 
-/* ================= NAVBAR ================= */
+/* ===========================
+   NAVBAR
+=========================== */
 
 header{
-    position:fixed;
-    width:100%;
-    top:0;
-    left:0;
-    z-index:1000;
-    transition:0.4s;
-}
-
-header.scrolled{
-    background:rgba(5,10,25,0.95);
-    backdrop-filter:blur(10px);
-    box-shadow:0 5px 20px rgba(0,0,0,0.3);
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:1000;
+background:rgba(0,0,0,.35);
+backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .navbar{
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 8%;
+max-width:1400px;
+margin:auto;
+padding:18px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .logo{
-    color:#fff;
-    font-size:30px;
-    font-weight:800;
-    letter-spacing:1px;
+font-size:30px;
+font-weight:900;
+letter-spacing:2px;
+cursor:pointer;
 }
 
 .logo span{
-    color:#00d9ff;
+color:#38bdf8;
 }
 
 .nav-links{
-    display:flex;
-    gap:35px;
+display:flex;
+gap:35px;
 }
 
 .nav-links a{
-    text-decoration:none;
-    color:#fff;
-    font-size:16px;
-    font-weight:500;
-    position:relative;
-    transition:0.3s;
-}
-
-.nav-links a::after{
-    content:'';
-    position:absolute;
-    left:0;
-    bottom:-5px;
-    width:0%;
-    height:2px;
-    background:#00d9ff;
-    transition:0.4s;
-}
-
-.nav-links a:hover::after{
-    width:100%;
+text-decoration:none;
+color:white;
+font-weight:600;
+transition:.3s;
 }
 
 .nav-links a:hover{
-    color:#00d9ff;
+color:#38bdf8;
 }
 
 .menu-btn{
-    color:#fff;
-    font-size:28px;
-    cursor:pointer;
-    display:none;
+display:none;
+font-size:30px;
+cursor:pointer;
 }
 
-/* ================= HERO SECTION ================= */
+/* ===========================
+   HERO
+=========================== */
 
 .hero{
-    position:relative;
-    width:100%;
-    height:100vh;
-    overflow:hidden;
-}
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:0 20px;
 
-.slide{
-    position:absolute;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    background-size:cover;
-    background-position:center;
-    opacity:0;
-    transform:scale(1.08);
-    transition:opacity 1.5s ease, transform 6s ease;
-}
+background:
+linear-gradient(rgba(0,0,0,.65),
+rgba(0,0,0,.7)),
+url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1600&q=80");
 
-.slide.active{
-    opacity:1;
-    transform:scale(1);
-}
-
-.overlay{
-    width:100%;
-    height:100%;
-    background:linear-gradient(
-        to right,
-        rgba(0,0,0,0.75),
-        rgba(0,0,0,0.45)
-    );
-    display:flex;
-    align-items:center;
-    padding:0 8%;
+background-size:cover;
+background-position:center;
 }
 
 .hero-content{
-    max-width:750px;
-    color:#fff;
-    animation:fadeUp 1.5s ease;
+max-width:900px;
 }
 
-.hero-content h4{
-    color:#00d9ff;
-    font-size:20px;
-    margin-bottom:15px;
-    letter-spacing:2px;
+.hero h1{
+font-size:clamp(3rem,8vw,6rem);
+font-weight:900;
+line-height:1.1;
+margin-bottom:20px;
 }
 
-.hero-content h1{
-    font-size:72px;
-    line-height:1.1;
-    margin-bottom:25px;
-    font-weight:800;
+.hero span{
+color:#38bdf8;
 }
 
-.hero-content p{
-    font-size:18px;
-    line-height:1.9;
-    color:#ddd;
-    margin-bottom:35px;
+.hero p{
+font-size:1.2rem;
+line-height:1.8;
+opacity:.9;
+max-width:700px;
+margin:auto;
+margin-bottom:40px;
 }
 
 .hero-buttons{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
 }
 
 .btn{
-    padding:15px 35px;
-    border-radius:50px;
-    text-decoration:none;
-    font-weight:600;
-    transition:0.4s;
-    display:inline-block;
+padding:16px 35px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:700;
+font-size:16px;
+transition:.3s;
 }
 
-.btn-primary{
-    background:#00d9ff;
-    color:#000;
+.primary{
+background:#38bdf8;
+color:#000;
 }
 
-.btn-primary:hover{
-    background:#fff;
-    transform:translateY(-4px);
+.primary:hover{
+transform:translateY(-5px);
 }
 
-.btn-secondary{
-    border:2px solid #fff;
-    color:#fff;
+.secondary{
+background:transparent;
+border:1px solid rgba(255,255,255,.2);
+color:white;
 }
 
-.btn-secondary:hover{
-    background:#fff;
-    color:#000;
+.secondary:hover{
+background:white;
+color:black;
 }
 
-/* ================= FEATURES ================= */
+/* ===========================
+   SECTION TITLE
+=========================== */
 
-.features{
-    width:100%;
-    background:#fff;
-    padding:100px 8%;
+.section{
+padding:100px 6%;
 }
 
 .section-title{
-    text-align:center;
-    margin-bottom:70px;
+text-align:center;
+font-size:3rem;
+font-weight:900;
+margin-bottom:15px;
 }
 
-.section-title h2{
-    font-size:48px;
-    color:#0b132a;
-    margin-bottom:15px;
+.section-sub{
+text-align:center;
+opacity:.7;
+margin-bottom:60px;
 }
 
-.section-title p{
-    color:#666;
-    font-size:17px;
-}
+/* ===========================
+   FEATURES
+=========================== */
 
-.feature-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:30px;
+.features-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
 }
 
 .feature-card{
-    background:#fff;
-    padding:40px 30px;
-    border-radius:25px;
-    text-align:center;
-    transition:0.4s;
-    border:1px solid #eee;
-    box-shadow:0 10px 25px rgba(0,0,0,0.07);
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+padding:30px;
+border-radius:20px;
+transition:.4s;
 }
 
 .feature-card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+transform:translateY(-10px);
+background:rgba(255,255,255,.08);
 }
 
-.feature-card i{
-    width:85px;
-    height:85px;
-    line-height:85px;
-    background:#00d9ff;
-    color:#000;
-    border-radius:50%;
-    font-size:32px;
-    margin-bottom:25px;
+.feature-icon{
+font-size:40px;
+margin-bottom:15px;
 }
 
 .feature-card h3{
-    margin-bottom:15px;
-    color:#0b132a;
-    font-size:24px;
+margin-bottom:10px;
 }
 
-.feature-card p{
-    color:#666;
-    line-height:1.8;
+/* ===========================
+   GALLERY
+=========================== */
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
 }
 
-/* ================= ADMISSION SECTION ================= */
-
-.admission-section{
-    position:relative;
-    padding:120px 8%;
-    background:
-    linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),
-    url('https://github.com/Anuj1-web/Library/blob/main/212499490_144515547749976_7310028628513821394_n.jpg?raw=true');
-
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
+.gallery-grid img{
+width:100%;
+height:280px;
+object-fit:cover;
+border-radius:20px;
+transition:.4s;
 }
 
-.admission-container{
-    max-width:1200px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:50px;
-    align-items:center;
+.gallery-grid img:hover{
+transform:scale(1.05);
 }
 
-.admission-content{
-    color:#fff;
+/* ===========================
+   REGISTRATION
+=========================== */
+
+.form-container{
+max-width:800px;
+margin:auto;
+padding:40px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+border-radius:25px;
 }
 
-.admission-tag{
-    display:inline-block;
-    background:#00d9ff;
-    color:#000;
-    padding:10px 22px;
-    border-radius:50px;
-    font-weight:600;
-    margin-bottom:25px;
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
 }
 
-.admission-content h2{
-    font-size:58px;
-    line-height:1.2;
-    margin-bottom:25px;
-    font-weight:800;
+.input-group{
+display:flex;
+flex-direction:column;
 }
 
-.admission-content p{
-    color:#ddd;
-    font-size:18px;
-    line-height:2;
-    margin-bottom:35px;
+.input-group label{
+margin-bottom:8px;
+font-size:14px;
 }
 
-.admission-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:12px;
-    padding:17px 38px;
-    background:#00d9ff;
-    color:#000;
-    text-decoration:none;
-    border-radius:50px;
-    font-weight:700;
-    transition:0.4s;
+.input-group input,
+.input-group textarea{
+padding:15px;
+border:none;
+outline:none;
+border-radius:12px;
+background:rgba(255,255,255,.08);
+color:white;
 }
 
-.admission-btn:hover{
-    background:#fff;
-    transform:translateY(-5px);
+textarea{
+resize:none;
+height:120px;
 }
 
-.admission-card{
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.1);
-    backdrop-filter:blur(12px);
-    border-radius:30px;
-    padding:45px;
-    color:#fff;
-    box-shadow:0 15px 40px rgba(0,0,0,0.3);
+.full{
+grid-column:1/-1;
 }
 
-.admission-card h3{
-    font-size:34px;
-    margin-bottom:30px;
+.submit-btn{
+margin-top:20px;
+width:100%;
+padding:16px;
+font-size:18px;
+font-weight:700;
+border:none;
+border-radius:12px;
+background:#38bdf8;
+cursor:pointer;
 }
 
-.admission-list{
-    display:flex;
-    flex-direction:column;
-    gap:22px;
-}
-
-.admission-item{
-    display:flex;
-    align-items:center;
-    gap:18px;
-}
-
-.admission-item i{
-    width:55px;
-    height:55px;
-    line-height:55px;
-    border-radius:50%;
-    background:#00d9ff;
-    color:#000;
-    text-align:center;
-    font-size:22px;
-    flex-shrink:0;
-}
-
-.admission-item div h4{
-    margin-bottom:6px;
-    font-size:20px;
-}
-
-.admission-item div p{
-    color:#ddd;
-    font-size:15px;
-    line-height:1.7;
-}
-
-/* ================= FOOTER ================= */
+/* ===========================
+   FOOTER
+=========================== */
 
 footer{
-    background:#050b18;
-    padding:30px;
-    text-align:center;
-    color:#bbb;
+padding:40px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.1);
 }
 
-/* ================= ANIMATION ================= */
-
-@keyframes fadeUp{
-
-    from{
-        opacity:0;
-        transform:translateY(40px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0px);
-    }
+footer p{
+opacity:.7;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:991px){
-
-    .hero-content h1{
-        font-size:55px;
-    }
-
-    .admission-content h2{
-        font-size:46px;
-    }
-
-    .nav-links{
-        position:absolute;
-        top:90px;
-        right:-100%;
-        width:280px;
-        height:calc(100vh - 90px);
-        background:#08101f;
-        flex-direction:column;
-        padding:50px 30px;
-        transition:0.4s;
-    }
-
-    .nav-links.active{
-        right:0;
-    }
-
-    .menu-btn{
-        display:block;
-    }
-}
+/* ===========================
+   MOBILE
+=========================== */
 
 @media(max-width:768px){
 
-    .hero-content h1{
-        font-size:42px;
-    }
-
-    .hero-content p{
-        font-size:16px;
-    }
-
-    .section-title h2{
-        font-size:36px;
-    }
-
-    .admission-content h2{
-        font-size:38px;
-    }
+.nav-links{
+display:none;
+position:absolute;
+top:80px;
+left:0;
+width:100%;
+background:#0b1120;
+flex-direction:column;
+padding:30px;
 }
 
-@media(max-width:500px){
+.nav-links.active{
+display:flex;
+}
 
-    .navbar{
-        padding:18px 5%;
-    }
+.menu-btn{
+display:block;
+}
 
-    .hero-content h1{
-        font-size:34px;
-    }
+.form-grid{
+grid-template-columns:1fr;
+}
 
-    .hero-content h4{
-        font-size:16px;
-    }
+.hero h1{
+font-size:3rem;
+}
 
-    .btn{
-        width:100%;
-        text-align:center;
-    }
-
-    .hero-buttons{
-        flex-direction:column;
-    }
-
-    .features,
-    .admission-section{
-        padding-left:5%;
-        padding-right:5%;
-    }
-
-    .admission-card{
-        padding:30px 22px;
-    }
 }
 
 </style>
@@ -508,337 +360,219 @@ footer{
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<header>
 
-<header id="header">
-    <nav class="navbar">
+<div class="navbar">
 
-        <div class="logo">
-            Education <span>Library</span>
-        </div>
+<div class="logo">
+Education <span>Library</span>
+</div>
 
-        <div class="nav-links" id="navLinks">
+<div class="nav-links" id="navLinks">
+<a href="#home">Home</a>
+<a href="#facilities">Facilities</a>
+<a href="#gallery">Gallery</a>
+<a href="#register">Register</a>
+</div>
 
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="services.html">Admission</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="contact.html">Contact</a>
+<div class="menu-btn" onclick="toggleMenu()">
+☰
+</div>
 
-        </div>
+</div>
 
-        <div class="menu-btn" id="menuBtn">
-            <i class="fas fa-bars"></i>
-        </div>
-
-    </nav>
 </header>
 
-<!-- ================= HERO SECTION ================= -->
+<!-- HERO -->
 
-<section class="hero">
+<section class="hero" id="home">
 
-    <div class="slide active"
-    style="background-image:url('https://raw.githubusercontent.com/Anuj1-web/Library/refs/heads/main/the-modern-buddha-s-library-marimata-chouraha-indore-libraries-7k4q6qvhck.avif');">
-        <div class="overlay">
+<div class="hero-content">
 
-            <div class="hero-content">
+<h1>
+Welcome To <span>Education Library</span>
+</h1>
 
-                <h4>WELCOME TO EDUCATION LIBRARY</h4>
+<p>
+A premium study environment designed for serious students.
+Comfortable seating, silent study zones, high-speed WiFi,
+and a professional learning atmosphere.
+</p>
 
-                <h1>Modern Library For Smart Learning</h1>
+<div class="hero-buttons">
 
-                <p>
-                    A premium educational environment designed for students,
-                    readers and achievers with 24/7 study access,
-                    peaceful atmosphere and modern facilities.
-                </p>
+<button class="btn primary"
+onclick="document.getElementById('register').scrollIntoView()">
+Register Now
+</button>
 
-                <div class="hero-buttons">
+<button class="btn secondary"
+onclick="document.getElementById('gallery').scrollIntoView()">
+View Gallery
+</button>
 
-                    <a href="about.html" class="btn btn-primary">
-                        Explore More
-                    </a>
+</div>
 
-                    <a href="contact.html" class="btn btn-secondary">
-                        Contact Us
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <div class="slide"
-    style="background-image:url('https://github.com/Anuj1-web/Library/blob/main/212499490_144515547749976_7310028628513821394_n.jpg?raw=true');">
-
-        <div class="overlay">
-
-            <div class="hero-content">
-
-                <h4>24 HOURS OPEN</h4>
-
-                <h1>Study Anytime Without Limits</h1>
-
-                <p>
-                    Comfortable seating, high-speed WiFi,
-                    charging points and peaceful study zones
-                    available all day and night.
-                </p>
-
-            </div>
-
-        </div>
-    </div>
-
-    <div class="slide"
-    style="background-image:url('https://github.com/Anuj1-web/Library/blob/main/130728826_1486488445074237_7820131969550470725_n.jpg?raw=true');">
-
-        <div class="overlay">
-
-            <div class="hero-content">
-
-                <h4>PREMIUM FACILITIES</h4>
-
-                <h1>Professional & Comfortable Environment</h1>
-
-                <p>
-                    Fully air-conditioned halls,
-                    modern infrastructure and a distraction-free
-                    atmosphere for focused learning.
-                </p>
-
-            </div>
-
-        </div>
-    </div>
+</div>
 
 </section>
 
-<!-- ================= FEATURES ================= -->
+<!-- FACILITIES -->
 
-<section class="features">
+<section class="section" id="facilities">
 
-    <div class="section-title">
+<h2 class="section-title">
+Our Facilities
+</h2>
 
-        <h2>Why Choose Us</h2>
+<p class="section-sub">
+Everything students need to stay focused and productive.
+</p>
 
-        <p>
-            Premium facilities designed for modern students and readers.
-        </p>
+<div class="features-grid">
 
-    </div>
+<div class="feature-card">
+<div class="feature-icon">📚</div>
+<h3>Huge Collection</h3>
+<p>Thousands of books and study materials.</p>
+</div>
 
-    <div class="feature-grid">
+<div class="feature-card">
+<div class="feature-icon">📶</div>
+<h3>Fast WiFi</h3>
+<p>High-speed internet for online learning.</p>
+</div>
 
-        <div class="feature-card">
-            <i class="fas fa-clock"></i>
-            <h3>24 Hours Open</h3>
-            <p>
-                Study anytime with uninterrupted access day and night.
-            </p>
-        </div>
+<div class="feature-card">
+<div class="feature-icon">❄️</div>
+<h3>AC Reading Hall</h3>
+<p>Comfortable atmosphere for long study hours.</p>
+</div>
 
-        <div class="feature-card">
-            <i class="fas fa-snowflake"></i>
-            <h3>AC Facility</h3>
-            <p>
-                Fully air-conditioned reading halls for maximum comfort.
-            </p>
-        </div>
+<div class="feature-card">
+<div class="feature-icon">🔒</div>
+<h3>Secure Environment</h3>
+<p>CCTV monitoring and safe study spaces.</p>
+</div>
 
-        <div class="feature-card">
-            <i class="fas fa-wifi"></i>
-            <h3>High-Speed WiFi</h3>
-            <p>
-                Fast and secure internet access for online learning.
-            </p>
-        </div>
-
-        <div class="feature-card">
-            <i class="fas fa-book-open"></i>
-            <h3>Huge Collection</h3>
-            <p>
-                Thousands of educational and competitive books available.
-            </p>
-        </div>
-
-    </div>
+</div>
 
 </section>
 
-<!-- ================= ADMISSION SECTION ================= -->
+<!-- GALLERY -->
 
-<section class="admission-section">
+<section class="section" id="gallery">
 
-    <div class="admission-container">
+<h2 class="section-title">
+Library Gallery
+</h2>
 
-        <div class="admission-content">
+<p class="section-sub">
+Explore our study environment.
+</p>
 
-            <span class="admission-tag">
-                Admissions Open 2026
-            </span>
+<div class="gallery-grid">
 
-            <h2>
-                Apply For Admission & Start Your Success Journey
-            </h2>
+<img src="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1200&q=80">
 
-            <p>
-                Join Education Library and experience a modern,
-                peaceful and professional study environment designed
-                for focused learning and academic excellence.
-            </p>
+<img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=80">
 
-            <a href="services.html" class="admission-btn">
+<img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1200&q=80">
 
-                <i class="fas fa-user-graduate"></i>
-                Apply For Admission
+<img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80">
 
-            </a>
-
-        </div>
-
-        <div class="admission-card">
-
-            <h3>Why Students Join Us</h3>
-
-            <div class="admission-list">
-
-                <div class="admission-item">
-
-                    <i class="fas fa-check"></i>
-
-                    <div>
-
-                        <h4>24/7 Study Access</h4>
-
-                        <p>
-                            Flexible learning environment available anytime.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="admission-item">
-
-                    <i class="fas fa-check"></i>
-
-                    <div>
-
-                        <h4>Peaceful Atmosphere</h4>
-
-                        <p>
-                            Quiet and distraction-free study zones.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="admission-item">
-
-                    <i class="fas fa-check"></i>
-
-                    <div>
-
-                        <h4>Premium Facilities</h4>
-
-                        <p>
-                            AC halls, WiFi, charging points and comfort seating.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="admission-item">
-
-                    <i class="fas fa-check"></i>
-
-                    <div>
-
-                        <h4>Professional Environment</h4>
-
-                        <p>
-                            Designed for serious students and achievers.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- REGISTER -->
+
+<section class="section" id="register">
+
+<h2 class="section-title">
+Student Registration
+</h2>
+
+<p class="section-sub">
+Register yourself to become a member.
+</p>
+
+<div class="form-container">
+
+<form id="registrationForm">
+
+<div class="form-grid">
+
+<div class="input-group">
+<label>Full Name</label>
+<input type="text" required>
+</div>
+
+<div class="input-group">
+<label>Mobile Number</label>
+<input type="tel" required>
+</div>
+
+<div class="input-group">
+<label>Email</label>
+<input type="email">
+</div>
+
+<div class="input-group">
+<label>Course / Class</label>
+<input type="text">
+</div>
+
+<div class="input-group full">
+<label>Address</label>
+<textarea></textarea>
+</div>
+
+<div class="input-group full">
+<label>Student Photo</label>
+<input type="file">
+</div>
+
+</div>
+
+<button class="submit-btn">
+Register Membership
+</button>
+
+</form>
+
+</div>
+
+</section>
 
 <footer>
 
-    © 2026 Education Library | Modern Professional Website
+<p>
+© 2026 Education Library. All Rights Reserved.
+</p>
 
 </footer>
 
-<!-- ================= JAVASCRIPT ================= -->
-
 <script>
 
-// MOBILE MENU
-
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
-
-menuBtn.onclick = () =>{
-    navLinks.classList.toggle("active");
-};
-
-// HEADER SCROLL EFFECT
-
-window.addEventListener("scroll",()=>{
-
-    const header = document.getElementById("header");
-
-    if(window.scrollY > 50){
-        header.classList.add("scrolled");
-    }
-    else{
-        header.classList.remove("scrolled");
-    }
-});
-
-// SLIDER
-
-const slides = document.querySelectorAll(".slide");
-
-let currentSlide = 0;
-
-function showSlide(index){
-
-    slides.forEach(slide=>{
-        slide.classList.remove("active");
-    });
-
-    slides[index].classList.add("active");
+function toggleMenu(){
+document.getElementById("navLinks")
+.classList.toggle("active");
 }
 
-setInterval(()=>{
+document
+.getElementById("registrationForm")
+.addEventListener("submit",function(e){
 
-    currentSlide++;
+e.preventDefault();
 
-    if(currentSlide >= slides.length){
-        currentSlide = 0;
-    }
+alert(
+"Registration submitted successfully! Supabase integration will be added next."
+);
 
-    showSlide(currentSlide);
+this.reset();
 
-},5000);
+});
 
 </script>
 
