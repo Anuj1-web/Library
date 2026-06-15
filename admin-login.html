@@ -777,6 +777,47 @@ function printStudentList(){
 const students =
 getStudents();
 
+const filteredStudents =
+students.filter(student=>{
+
+const status =
+getStatus(student);
+
+if(
+currentFilter === "active"
+){
+return status === "Active";
+}
+
+if(
+currentFilter === "inactive" ||
+currentFilter === "due"
+){
+return status === "Inactive";
+}
+
+return true;
+
+});
+
+let reportTitle =
+"All Students";
+
+if(currentFilter==="active"){
+reportTitle =
+"Active Students";
+}
+
+if(currentFilter==="inactive"){
+reportTitle =
+"Inactive Students";
+}
+
+if(currentFilter==="due"){
+reportTitle =
+"Due Fee Students";
+}
+
 let html = `
 
 <html>
@@ -784,7 +825,7 @@ let html = `
 <head>
 
 <title>
-Education Library Student Report
+${reportTitle}
 </title>
 
 <style>
@@ -794,14 +835,14 @@ font-family:Arial,sans-serif;
 padding:20px;
 }
 
-h1{
+h1,h2{
 text-align:center;
-margin-bottom:25px;
 }
 
 table{
 width:100%;
 border-collapse:collapse;
+margin-top:20px;
 }
 
 th,td{
@@ -821,8 +862,12 @@ background:#eee;
 <body>
 
 <h1>
-Education Library Student Report
+Education Library
 </h1>
+
+<h2>
+${reportTitle}
+</h2>
 
 <table>
 
@@ -832,12 +877,13 @@ Education Library Student Report
 <th>Name</th>
 <th>Mobile</th>
 <th>Joining Date</th>
+<th>Due Date</th>
 
 </tr>
 
 `;
 
-students.forEach(student=>{
+filteredStudents.forEach(student=>{
 
 html += `
 
@@ -850,6 +896,8 @@ html += `
 <td>${student.mobile || "-"}</td>
 
 <td>${student.joiningDate || "-"}</td>
+
+<td>${student.nextDueDate || "-"}</td>
 
 </tr>
 
