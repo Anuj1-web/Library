@@ -468,6 +468,10 @@ Become a member of Education Library.
 <label>Joining Date</label>
 <input type="date" id="joiningDate">
 </div>
+   <div class="input-group">
+<label>Due Date</label>
+<input type="date" id="nextDueDate" required>
+</div>
 
 <div class="input-group">
 <label>Photo</label>
@@ -773,15 +777,6 @@ localStorage.getItem("students")
 const libraryId =
 generateLibraryId();
 
-const today =
-new Date();
-
-const nextDue =
-new Date(today);
-
-nextDue.setMonth(
-nextDue.getMonth()+1
-);
 
 let photoData = "";
 
@@ -859,9 +854,9 @@ registeredAt:
 new Date().toISOString(),
 
 nextDueDate:
-nextDue
-.toISOString()
-.split("T")[0]
+document
+.getElementById("nextDueDate")
+.value
 
 };
 
@@ -910,7 +905,29 @@ reader.readAsDataURL(file);
 });
 
 }
+document
+.getElementById("joiningDate")
+.addEventListener(
+"change",
+function(){
 
+if(!this.value){
+return;
+}
+
+let due =
+new Date(this.value);
+
+due.setMonth(
+due.getMonth() + 1
+);
+
+document
+.getElementById("nextDueDate")
+.value =
+due.toISOString().split("T")[0];
+
+});
 /* ==========================
    FIRST RUN SAMPLE
 ========================== */
