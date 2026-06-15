@@ -413,6 +413,37 @@ grid-template-columns:1fr;
 
 }
 
+.action-buttons{
+display:flex;
+gap:15px;
+margin-top:25px;
+flex-wrap:wrap;
+}
+
+.action-buttons button{
+padding:14px 22px;
+border:none;
+border-radius:12px;
+font-weight:700;
+cursor:pointer;
+background:#F59E0B;
+color:black;
+}
+
+.delete-btn{
+background:#DC2626 !important;
+color:white !important;
+}
+
+.warning-box{
+margin-bottom:25px;
+padding:20px;
+border-radius:18px;
+background:rgba(239,68,68,.12);
+border:1px solid rgba(239,68,68,.3);
+color:#EF4444;
+font-weight:700;
+}
 </style>
 
 </head>
@@ -497,16 +528,16 @@ new Date();
 const dueDate =
 new Date(student.nextDueDate);
 
-const isDue =
+const isInactive =
 today > dueDate;
 
 const statusText =
-isDue
-? "FEE DUE"
+isInactive
+? "INACTIVE"
 : "ACTIVE";
 
 const statusClass =
-isDue
+isInactive
 ? "due"
 : "active";
 
@@ -587,11 +618,40 @@ Monthly Fee
 
 </div>
 
+<div class="action-buttons">
+
+<button onclick="editStudent()">
+Edit Student
+</button>
+
+<button class="delete-btn"
+onclick="deleteStudent()">
+Delete Student
+</button>
+
+</div>
+
 </div>
 
 </div>
 
 </div>
+
+${
+isInactive
+?
+`
+<div class="warning-box">
+
+⚠ Membership Expired
+
+Your membership has become inactive because the fee due date has passed.
+
+</div>
+`
+:
+""
+}
 
 <div class="details-section">
 
@@ -660,6 +720,121 @@ ${student.address || "-"}
 `;
 
 }
+
+/* ==========================
+   EDIT STUDENT
+========================== */
+
+function editStudent(){
+
+let students =
+JSON.parse(
+localStorage.getItem("students")
+) || [];
+
+const index =
+students.findIndex(
+s => s.id === studentId
+);
+
+if(index === -1){
+return;
+}
+
+let student =
+students[index];
+
+const newName =
+prompt(
+"Student Name",
+student.name
+);
+
+if(newName === null){
+return;
+}
+
+const newMobile =
+prompt(
+"Mobile Number",
+student.mobile
+);
+
+if(newMobile === null){
+return;
+}
+
+const newCourse =
+prompt(
+"Course",
+student.course
+);
+
+if(newCourse === null){
+return;
+}
+
+student.name = newName;
+student.mobile = newMobile;
+student.course = newCourse;
+
+students[index] = student;
+
+localStorage.setItem(
+"students",
+JSON.stringify(students)
+);
+
+alert(
+"Student Updated Successfully"
+);
+
+location.reload();
+
+}
+
+/* ==========================
+   DELETE STUDENT
+========================== */
+
+function deleteStudent(){
+
+const confirmDelete =
+confirm(
+"Delete this student permanently?"
+);
+
+if(!confirmDelete){
+return;
+}
+
+let students =
+JSON.parse(
+localStorage.getItem("students")
+) || [];
+
+students =
+students.filter(
+s => s.id !== studentId
+);
+
+localStorage.setItem(
+"students",
+JSON.stringify(students)
+);
+
+alert(
+"Student Deleted Successfully"
+);
+
+window.location.href =
+"index.html";
+
+}
+
+/* ==========================
+   NOT FOUND
+========================== */
 
 function showNotFound(){
 
