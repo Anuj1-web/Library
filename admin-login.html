@@ -891,18 +891,18 @@ printWindow.print();
 }
   function downloadExcel(){
 
-function printStudentList(){
-
 const students =
 getStudents();
 
-const filteredStudents =
+let filteredStudents =
 students.filter(student=>{
 
 const status =
 getStatus(student);
 
-if(currentFilter==="active"){
+if(
+currentFilter==="active"
+){
 return status==="Active";
 }
 
@@ -917,111 +917,65 @@ return true;
 
 });
 
-let title =
-"All Students";
+const exportData =
+filteredStudents.map(student=>({
 
-if(currentFilter==="active"){
-title = "Active Students";
+"Library ID":
+student.id || "",
+
+"Student Name":
+student.name || "",
+
+"Father Name":
+student.fatherName || "",
+
+"Mobile":
+student.mobile || "",
+
+"Email":
+student.email || "",
+
+"Course":
+student.course || "",
+
+"Monthly Fee":
+student.fee || "",
+
+"Joining Date":
+student.joiningDate || "",
+
+"Due Date":
+student.nextDueDate || "",
+
+"Address":
+student.address || ""
+
+}));
+
+const worksheet =
+XLSX.utils.json_to_sheet(
+exportData
+);
+
+const workbook =
+XLSX.utils.book_new();
+
+XLSX.utils.book_append_sheet(
+workbook,
+worksheet,
+"Students"
+);
+
+XLSX.writeFile(
+workbook,
+"EducationLibraryStudents.xlsx"
+);
+
 }
 
-if(currentFilter==="inactive"){
-title = "Inactive Students";
-}
+renderStudents();
 
-if(currentFilter==="due"){
-title = "Due Fee Students";
-}
-
-let html = `
-
-<html>
-
-<head>
-
-<title>
-${title}
-</title>
-
-<style>
-
-body{
-font-family:Arial,sans-serif;
-padding:20px;
-}
-
-h1{
-text-align:center;
-margin-bottom:25px;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-}
-
-th,td{
-border:1px solid #000;
-padding:10px;
-text-align:left;
-}
-
-th{
-background:#eee;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<h1>
-Education Library
-</h1>
-
-<h2 style="text-align:center;margin-bottom:20px;">
-${title}
-</h2>
-
-<table>
-
-<tr>
-
-<th>Library ID</th>
-<th>Name</th>
-<th>Mobile</th>
-<th>Joining Date</th>
-<th>Due Date</th>
-
-</tr>
-
-`;
-
-filteredStudents.forEach(student=>{
-
-html += `
-
-<tr>
-
-<td>${student.id || "-"}</td>
-
-<td>${student.name || "-"}</td>
-
-<td>${student.mobile || "-"}</td>
-
-<td>${student.joiningDate || "-"}</td>
-
-<td>${student.nextDueDate || "-"}</td>
-
-</tr>
-
-`;
-
-});
-
-html += `
-
-</table>
+</script>
 
 </body>
 
