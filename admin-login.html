@@ -5,7 +5,8 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
+<meta
+name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>
@@ -37,20 +38,18 @@ min-height:100vh;
 
 header{
 
-padding:25px 6%;
+position:sticky;
+top:0;
+z-index:999;
+
+padding:20px 6%;
 
 display:flex;
-
 justify-content:space-between;
-
 align-items:center;
-
 flex-wrap:wrap;
 
-gap:20px;
-
-border-bottom:
-1px solid rgba(245,158,11,.15);
+gap:15px;
 
 background:
 rgba(15,23,42,.95);
@@ -58,20 +57,15 @@ rgba(15,23,42,.95);
 backdrop-filter:
 blur(20px);
 
-position:sticky;
-
-top:0;
-
-z-index:999;
+border-bottom:
+1px solid rgba(245,158,11,.15);
 
 }
 
 .logo{
 
 font-size:30px;
-
 font-weight:900;
-
 color:#FBBF24;
 
 }
@@ -80,17 +74,15 @@ color:#FBBF24;
 color:white;
 }
 
-.header-buttons{
+.header-actions{
 
 display:flex;
-
-gap:12px;
-
+gap:10px;
 flex-wrap:wrap;
 
 }
 
-.header-buttons button{
+.header-actions button{
 
 padding:12px 18px;
 
@@ -132,22 +124,22 @@ margin-bottom:35px;
 background:
 linear-gradient(
 135deg,
-rgba(245,158,11,.12),
+rgba(245,158,11,.15),
 rgba(255,255,255,.03)
 );
 
-border:
-1px solid rgba(245,158,11,.15);
-
 padding:25px;
 
-border-radius:22px;
+border-radius:20px;
+
+border:
+1px solid rgba(245,158,11,.15);
 
 }
 
 .stat-card h2{
 
-font-size:38px;
+font-size:40px;
 
 color:#FBBF24;
 
@@ -155,18 +147,10 @@ margin-bottom:10px;
 
 }
 
-.stat-card p{
-
-opacity:.8;
-
-}
-
 .toolbar{
 
 display:flex;
-
 gap:15px;
-
 flex-wrap:wrap;
 
 margin-bottom:30px;
@@ -176,13 +160,11 @@ margin-bottom:30px;
 .toolbar input{
 
 flex:1;
-
 min-width:250px;
 
 padding:15px;
 
 border:none;
-
 outline:none;
 
 border-radius:12px;
@@ -229,16 +211,16 @@ width:100%;
 
 border-collapse:collapse;
 
-min-width:1200px;
+min-width:1300px;
 
 }
 
 th{
 
+padding:18px;
+
 background:
 rgba(245,158,11,.15);
-
-padding:18px;
 
 text-align:left;
 
@@ -266,7 +248,7 @@ object-fit:cover;
 
 .action-btn{
 
-padding:10px 15px;
+padding:10px 14px;
 
 border:none;
 
@@ -289,13 +271,13 @@ background:#2563EB;
 color:white;
 }
 
-.delete-btn{
-background:#DC2626;
+.renew-btn{
+background:#16A34A;
 color:white;
 }
 
-.renew-btn{
-background:#16A34A;
+.delete-btn{
+background:#DC2626;
 color:white;
 }
 
@@ -311,15 +293,11 @@ font-weight:700;
 
 @media(max-width:768px){
 
-.logo{
-font-size:24px;
-}
-
-.header-buttons{
+.header-actions{
 width:100%;
 }
 
-.header-buttons button{
+.header-actions button{
 flex:1;
 }
 
@@ -337,7 +315,7 @@ flex:1;
 Education <span>Library</span>
 </div>
 
-<div class="header-buttons">
+<div class="header-actions">
 
 <button onclick="filterStudents('all')">
 All Students
@@ -380,7 +358,7 @@ Due Fees
 
 <div class="stat-card">
 <h2 id="dueStudents">0</h2>
-<p>Due Fee Students</p>
+<p>Due Fees</p>
 </div>
 
 </div>
@@ -390,15 +368,15 @@ Due Fees
 <input
 type="text"
 id="searchInput"
-placeholder="Search by Name or Library ID"
+placeholder="Search Name or Library ID"
 onkeyup="renderStudents()">
 
 <button onclick="downloadExcel()">
 Download Excel
 </button>
 
-<button onclick="window.print()">
-Print
+<button onclick="printStudentList()">
+Print List
 </button>
 
 </div>
@@ -461,7 +439,14 @@ return today > dueDate
 
 }
 
-function updateStats(){
+function filterStudents(type){
+
+currentFilter = type;
+
+renderStudents();
+
+}
+  function updateStats(){
 
 const students =
 getStudents();
@@ -504,14 +489,7 @@ inactive;
 
 }
 
-function filterStudents(type){
-
-currentFilter = type;
-
-renderStudents();
-
-}
-  function renderStudents(){
+function renderStudents(){
 
 const students =
 getStudents();
@@ -558,11 +536,11 @@ return true;
 .filter(student=>{
 
 return (
-student.name
+(student.name || "")
 .toLowerCase()
 .includes(search)
 ||
-student.id
+(student.id || "")
 .toLowerCase()
 .includes(search)
 );
@@ -617,7 +595,7 @@ ${status}
 </td>
 
 <td>
-${student.nextDueDate}
+${student.nextDueDate || "-"}
 </td>
 
 <td>
@@ -667,77 +645,20 @@ window.location.href =
 
 function editStudent(id){
 
-let students =
-getStudents();
+window.location.href =
+"edit-student.html?id=" + id;
 
-const index =
-students.findIndex(
-s => s.id === id
+}
+  function renewMembership(id){
+
+const confirmPayment =
+confirm(
+"Have you received the fee payment from this student?"
 );
 
-if(index === -1){
+if(!confirmPayment){
 return;
 }
-
-let student =
-students[index];
-
-const newName =
-prompt(
-"Student Name",
-student.name
-);
-
-if(newName===null){
-return;
-}
-
-const newMobile =
-prompt(
-"Mobile",
-student.mobile
-);
-
-if(newMobile===null){
-return;
-}
-
-const newCourse =
-prompt(
-"Course",
-student.course
-);
-
-if(newCourse===null){
-return;
-}
-
-student.name =
-newName;
-
-student.mobile =
-newMobile;
-
-student.course =
-newCourse;
-
-students[index] =
-student;
-
-localStorage.setItem(
-"students",
-JSON.stringify(students)
-);
-
-renderStudents();
-
-alert(
-"Student Updated Successfully"
-);
-
-}
-
-function renewMembership(id){
 
 let students =
 getStudents();
@@ -751,16 +672,17 @@ if(index === -1){
 return;
 }
 
-let nextDue =
-new Date();
-
-nextDue.setMonth(
-nextDue.getMonth()+1
+let currentDueDate =
+new Date(
+students[index].nextDueDate
 );
 
-students[index]
-.nextDueDate =
-nextDue
+currentDueDate.setMonth(
+currentDueDate.getMonth() + 1
+);
+
+students[index].nextDueDate =
+currentDueDate
 .toISOString()
 .split("T")[0];
 
@@ -769,21 +691,22 @@ localStorage.setItem(
 JSON.stringify(students)
 );
 
-renderStudents();
-
 alert(
 "Membership Renewed Successfully"
 );
+
+renderStudents();
 
 }
 
 function deleteStudent(id){
 
-if(
-!confirm(
-"Delete this student?"
-)
-){
+const confirmDelete =
+confirm(
+"Delete this student permanently?"
+);
+
+if(!confirmDelete){
 return;
 }
 
@@ -800,11 +723,132 @@ localStorage.setItem(
 JSON.stringify(students)
 );
 
+alert(
+"Student Deleted Successfully"
+);
+
 renderStudents();
 
 }
 
-function downloadExcel(){
+function printStudentList(){
+
+const students =
+getStudents();
+
+let html = `
+
+<html>
+
+<head>
+
+<title>
+Education Library Student Report
+</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+padding:20px;
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #000;
+padding:10px;
+text-align:left;
+}
+
+th{
+background:#eee;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+Education Library Student Report
+</h1>
+
+<table>
+
+<tr>
+
+<th>Library ID</th>
+<th>Name</th>
+<th>Mobile</th>
+<th>Joining Date</th>
+
+</tr>
+
+`;
+
+students.forEach(student=>{
+
+html += `
+
+<tr>
+
+<td>${student.id || "-"}</td>
+
+<td>${student.name || "-"}</td>
+
+<td>${student.mobile || "-"}</td>
+
+<td>${student.joiningDate || "-"}</td>
+
+</tr>
+
+`;
+
+});
+
+html += `
+
+</table>
+
+</body>
+
+</html>
+
+`;
+
+const printWindow =
+window.open(
+"",
+"",
+"width=1200,height=700"
+);
+
+printWindow.document.write(
+html
+);
+
+printWindow.document.close();
+
+printWindow.focus();
+
+setTimeout(()=>{
+
+printWindow.print();
+
+},500);
+
+}
+  function downloadExcel(){
 
 const students =
 getStudents();
@@ -832,9 +876,44 @@ return true;
 
 });
 
+const exportData =
+filteredStudents.map(student=>({
+
+"Library ID":
+student.id || "",
+
+"Student Name":
+student.name || "",
+
+"Father Name":
+student.fatherName || "",
+
+"Mobile":
+student.mobile || "",
+
+"Email":
+student.email || "",
+
+"Course":
+student.course || "",
+
+"Monthly Fee":
+student.fee || "",
+
+"Joining Date":
+student.joiningDate || "",
+
+"Due Date":
+student.nextDueDate || "",
+
+"Address":
+student.address || ""
+
+}));
+
 const worksheet =
 XLSX.utils.json_to_sheet(
-filteredStudents
+exportData
 );
 
 const workbook =
@@ -858,4 +937,5 @@ renderStudents();
 </script>
 
 </body>
+
 </html>
