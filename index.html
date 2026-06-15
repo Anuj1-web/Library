@@ -11,9 +11,9 @@
 
 <style>
 
-/* ===========================
+/* ==========================
    RESET
-=========================== */
+========================== */
 
 *{
 margin:0;
@@ -27,24 +27,24 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#0b1120;
-color:white;
+background:#0B1120;
+color:#fff;
 overflow-x:hidden;
 }
 
-/* ===========================
+/* ==========================
    NAVBAR
-=========================== */
+========================== */
 
 header{
 position:fixed;
 top:0;
 left:0;
 width:100%;
-z-index:1000;
-background:rgba(0,0,0,.35);
-backdrop-filter:blur(15px);
-border-bottom:1px solid rgba(255,255,255,.1);
+z-index:999;
+backdrop-filter:blur(20px);
+background:rgba(10,15,30,.75);
+border-bottom:1px solid rgba(245,158,11,.15);
 }
 
 .navbar{
@@ -61,15 +61,17 @@ font-size:30px;
 font-weight:900;
 letter-spacing:2px;
 cursor:pointer;
+color:#FBBF24;
+text-decoration:none;
 }
 
 .logo span{
-color:#38bdf8;
+color:white;
 }
 
 .nav-links{
 display:flex;
-gap:35px;
+gap:30px;
 }
 
 .nav-links a{
@@ -80,100 +82,146 @@ transition:.3s;
 }
 
 .nav-links a:hover{
-color:#38bdf8;
+color:#FBBF24;
 }
 
 .menu-btn{
 display:none;
-font-size:30px;
+font-size:32px;
 cursor:pointer;
+color:#FBBF24;
 }
 
-/* ===========================
+/* ==========================
    HERO
-=========================== */
+========================== */
 
 .hero{
-height:100vh;
+min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-text-align:center;
-padding:0 20px;
+padding:120px 6% 60px;
 
 background:
-linear-gradient(rgba(0,0,0,.65),
-rgba(0,0,0,.7)),
-url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1600&q=80");
+linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
+url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1800&q=80");
 
 background-size:cover;
 background-position:center;
 }
 
-.hero-content{
-max-width:900px;
+.hero-container{
+max-width:1300px;
+width:100%;
+display:grid;
+grid-template-columns:1.2fr 1fr;
+gap:60px;
+align-items:center;
 }
 
-.hero h1{
-font-size:clamp(3rem,8vw,6rem);
+.hero-text h1{
+font-size:clamp(3rem,7vw,5.5rem);
 font-weight:900;
-line-height:1.1;
+line-height:1.05;
 margin-bottom:20px;
 }
 
-.hero span{
-color:#38bdf8;
+.gold{
+color:#FBBF24;
 }
 
-.hero p{
-font-size:1.2rem;
-line-height:1.8;
+.hero-text p{
+font-size:1.1rem;
+line-height:1.9;
 opacity:.9;
-max-width:700px;
-margin:auto;
-margin-bottom:40px;
+max-width:650px;
+margin-bottom:35px;
 }
 
 .hero-buttons{
 display:flex;
-justify-content:center;
-gap:20px;
+gap:15px;
 flex-wrap:wrap;
 }
 
 .btn{
-padding:16px 35px;
+padding:16px 30px;
 border:none;
-border-radius:12px;
-cursor:pointer;
+border-radius:14px;
 font-weight:700;
-font-size:16px;
+cursor:pointer;
 transition:.3s;
+font-size:15px;
 }
 
-.primary{
-background:#38bdf8;
+.btn-primary{
+background:#F59E0B;
 color:#000;
 }
 
-.primary:hover{
+.btn-primary:hover{
 transform:translateY(-5px);
+box-shadow:0 10px 30px rgba(245,158,11,.35);
 }
 
-.secondary{
+.btn-secondary{
 background:transparent;
-border:1px solid rgba(255,255,255,.2);
 color:white;
+border:1px solid rgba(255,255,255,.15);
 }
 
-.secondary:hover{
+.btn-secondary:hover{
 background:white;
 color:black;
 }
 
-/* ===========================
-   SECTION TITLE
-=========================== */
+/* ==========================
+   STUDENT PORTAL CARD
+========================== */
+
+.portal-card{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(245,158,11,.2);
+padding:35px;
+border-radius:25px;
+}
+
+.portal-card h2{
+margin-bottom:20px;
+color:#FBBF24;
+}
+
+.portal-card p{
+opacity:.75;
+margin-bottom:20px;
+}
+
+.portal-card input{
+width:100%;
+padding:15px;
+margin-bottom:15px;
+border:none;
+outline:none;
+border-radius:12px;
+background:#1E293B;
+color:white;
+}
+
+.portal-card button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:#F59E0B;
+font-weight:700;
+cursor:pointer;
+}
+
+/* ==========================
+   SECTION
+========================== */
 
 .section{
 padding:100px 6%;
@@ -188,75 +236,22 @@ margin-bottom:15px;
 
 .section-sub{
 text-align:center;
-opacity:.7;
+opacity:.75;
 margin-bottom:60px;
 }
 
-/* ===========================
-   FEATURES
-=========================== */
-
-.features-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.feature-card{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.08);
-padding:30px;
-border-radius:20px;
-transition:.4s;
-}
-
-.feature-card:hover{
-transform:translateY(-10px);
-background:rgba(255,255,255,.08);
-}
-
-.feature-icon{
-font-size:40px;
-margin-bottom:15px;
-}
-
-.feature-card h3{
-margin-bottom:10px;
-}
-
-/* ===========================
-   GALLERY
-=========================== */
-
-.gallery-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:20px;
-}
-
-.gallery-grid img{
-width:100%;
-height:280px;
-object-fit:cover;
-border-radius:20px;
-transition:.4s;
-}
-
-.gallery-grid img:hover{
-transform:scale(1.05);
-}
-
-/* ===========================
+/* ==========================
    REGISTRATION
-=========================== */
+========================== */
 
-.form-container{
-max-width:800px;
+.registration-container{
+max-width:1100px;
 margin:auto;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(245,158,11,.15);
+backdrop-filter:blur(25px);
 padding:40px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.1);
-border-radius:25px;
+border-radius:30px;
 }
 
 .form-grid{
@@ -280,51 +275,45 @@ font-size:14px;
 padding:15px;
 border:none;
 outline:none;
+background:#1E293B;
 border-radius:12px;
-background:rgba(255,255,255,.08);
 color:white;
 }
 
 textarea{
-resize:none;
 height:120px;
+resize:none;
 }
 
 .full{
 grid-column:1/-1;
 }
 
-.submit-btn{
+.register-btn{
 margin-top:20px;
 width:100%;
-padding:16px;
+padding:18px;
+border:none;
+border-radius:14px;
+background:#F59E0B;
 font-size:18px;
 font-weight:700;
-border:none;
-border-radius:12px;
-background:#38bdf8;
 cursor:pointer;
 }
 
-/* ===========================
-   FOOTER
-=========================== */
-
-footer{
-padding:40px;
-text-align:center;
-border-top:1px solid rgba(255,255,255,.1);
-}
-
-footer p{
-opacity:.7;
-}
-
-/* ===========================
+/* ==========================
    MOBILE
-=========================== */
+========================== */
 
-@media(max-width:768px){
+@media(max-width:900px){
+
+.hero-container{
+grid-template-columns:1fr;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
 
 .nav-links{
 display:none;
@@ -332,9 +321,9 @@ position:absolute;
 top:80px;
 left:0;
 width:100%;
-background:#0b1120;
+background:#0B1120;
+padding:25px;
 flex-direction:column;
-padding:30px;
 }
 
 .nav-links.active{
@@ -343,14 +332,6 @@ display:flex;
 
 .menu-btn{
 display:block;
-}
-
-.form-grid{
-grid-template-columns:1fr;
-}
-
-.hero h1{
-font-size:3rem;
 }
 
 }
@@ -364,15 +345,15 @@ font-size:3rem;
 
 <div class="navbar">
 
-<div class="logo">
+<a href="admin-login.html" class="logo">
 Education <span>Library</span>
-</div>
+</a>
 
 <div class="nav-links" id="navLinks">
 <a href="#home">Home</a>
-<a href="#facilities">Facilities</a>
-<a href="#gallery">Gallery</a>
 <a href="#register">Register</a>
+<a href="#gallery">Gallery</a>
+<a href="#facilities">Facilities</a>
 </div>
 
 <div class="menu-btn" onclick="toggleMenu()">
@@ -383,32 +364,52 @@ Education <span>Library</span>
 
 </header>
 
-<!-- HERO -->
-
 <section class="hero" id="home">
 
-<div class="hero-content">
+<div class="hero-container">
+
+<div class="hero-text">
 
 <h1>
-Welcome To <span>Education Library</span>
+Where Serious Students
+<span class="gold">Build Their Future</span>
 </h1>
 
 <p>
-A premium study environment designed for serious students.
-Comfortable seating, silent study zones, high-speed WiFi,
-and a professional learning atmosphere.
+Join Education Library and experience a premium study environment
+with comfortable seating, silent reading halls, high-speed WiFi,
+air conditioning, CCTV security and a focused atmosphere.
 </p>
 
 <div class="hero-buttons">
 
-<button class="btn primary"
+<button class="btn btn-primary"
 onclick="document.getElementById('register').scrollIntoView()">
 Register Now
 </button>
 
-<button class="btn secondary"
-onclick="document.getElementById('gallery').scrollIntoView()">
-View Gallery
+<button class="btn btn-secondary"
+onclick="window.location.href='student.html'">
+Student Portal
+</button>
+
+</div>
+
+</div>
+
+<div class="portal-card">
+
+<h2>Student Portal</h2>
+
+<p>Enter your Library ID to view membership details.</p>
+
+<input
+type="text"
+id="studentIdSearch"
+placeholder="EL260001">
+
+<button onclick="searchStudent()">
+View Membership
 </button>
 
 </div>
@@ -416,76 +417,6 @@ View Gallery
 </div>
 
 </section>
-
-<!-- FACILITIES -->
-
-<section class="section" id="facilities">
-
-<h2 class="section-title">
-Our Facilities
-</h2>
-
-<p class="section-sub">
-Everything students need to stay focused and productive.
-</p>
-
-<div class="features-grid">
-
-<div class="feature-card">
-<div class="feature-icon">📚</div>
-<h3>Huge Collection</h3>
-<p>Thousands of books and study materials.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">📶</div>
-<h3>Fast WiFi</h3>
-<p>High-speed internet for online learning.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">❄️</div>
-<h3>AC Reading Hall</h3>
-<p>Comfortable atmosphere for long study hours.</p>
-</div>
-
-<div class="feature-card">
-<div class="feature-icon">🔒</div>
-<h3>Secure Environment</h3>
-<p>CCTV monitoring and safe study spaces.</p>
-</div>
-
-</div>
-
-</section>
-
-<!-- GALLERY -->
-
-<section class="section" id="gallery">
-
-<h2 class="section-title">
-Library Gallery
-</h2>
-
-<p class="section-sub">
-Explore our study environment.
-</p>
-
-<div class="gallery-grid">
-
-<img src="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1200&q=80">
-
-<img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=80">
-
-<img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1200&q=80">
-
-<img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80">
-
-</div>
-
-</section>
-
-<!-- REGISTER -->
 
 <section class="section" id="register">
 
@@ -494,10 +425,10 @@ Student Registration
 </h2>
 
 <p class="section-sub">
-Register yourself to become a member.
+Become a member of Education Library.
 </p>
 
-<div class="form-container">
+<div class="registration-container">
 
 <form id="registrationForm">
 
@@ -505,38 +436,53 @@ Register yourself to become a member.
 
 <div class="input-group">
 <label>Full Name</label>
-<input type="text" required>
+<input type="text" id="name" required>
+</div>
+
+<div class="input-group">
+<label>Father Name</label>
+<input type="text" id="fatherName" required>
 </div>
 
 <div class="input-group">
 <label>Mobile Number</label>
-<input type="tel" required>
+<input type="tel" id="mobile" required>
 </div>
 
 <div class="input-group">
 <label>Email</label>
-<input type="email">
+<input type="email" id="email">
 </div>
 
 <div class="input-group">
-<label>Course / Class</label>
-<input type="text">
+<label>Course / Exam</label>
+<input type="text" id="course">
+</div>
+
+<div class="input-group">
+<label>Monthly Fee</label>
+<input type="number" id="fee">
+</div>
+
+<div class="input-group">
+<label>Joining Date</label>
+<input type="date" id="joiningDate">
+</div>
+
+<div class="input-group">
+<label>Photo</label>
+<input type="file" id="photo">
 </div>
 
 <div class="input-group full">
 <label>Address</label>
-<textarea></textarea>
-</div>
-
-<div class="input-group full">
-<label>Student Photo</label>
-<input type="file">
+<textarea id="address"></textarea>
 </div>
 
 </div>
 
-<button class="submit-btn">
-Register Membership
+<button class="register-btn">
+Generate Membership
 </button>
 
 </form>
@@ -545,34 +491,387 @@ Register Membership
 
 </section>
 
+<!-- CONTINUE WITH GALLERY + FEATURES + JAVASCRIPT -->
+<!-- ==========================
+     FACILITIES
+========================== -->
+
+<section class="section" id="facilities">
+
+<h2 class="section-title">
+Premium Facilities
+</h2>
+
+<p class="section-sub">
+Everything a serious student needs to study efficiently.
+</p>
+
+<div class="features-grid">
+
+<div class="feature-card">
+<div class="feature-icon">📚</div>
+<h3>Huge Book Collection</h3>
+<p>Access thousands of books and study materials.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">📶</div>
+<h3>High-Speed WiFi</h3>
+<p>Fast internet access for online learning.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">❄️</div>
+<h3>Air Conditioned Hall</h3>
+<p>Comfortable environment for long study sessions.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">🔒</div>
+<h3>CCTV Security</h3>
+<p>Safe and secure study atmosphere.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">⚡</div>
+<h3>Power Backup</h3>
+<p>Uninterrupted learning experience.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">🪑</div>
+<h3>Personal Study Desk</h3>
+<p>Dedicated desks for focused preparation.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================
+     GALLERY
+========================== -->
+
+<section class="section" id="gallery">
+
+<h2 class="section-title">
+Library Gallery
+</h2>
+
+<p class="section-sub">
+A glimpse of the Education Library experience.
+</p>
+
+<div class="gallery-grid">
+
+<img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=80">
+
+<img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1200&q=80">
+
+<img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=80">
+
+<img src="https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1200&q=80">
+
+</div>
+
+</section>
+
+<!-- ==========================
+     FOOTER
+========================== -->
+
 <footer>
 
+<h2>Education Library</h2>
+
 <p>
+Premium Study Environment For Serious Students
+</p>
+
+<div class="footer-links">
+
+<a href="student.html">Student Portal</a>
+<a href="admin-login.html">Admin Login</a>
+
+</div>
+
+<p class="copyright">
 © 2026 Education Library. All Rights Reserved.
 </p>
 
 </footer>
 
+<style>
+
+/* ==========================
+   FEATURES
+========================== */
+
+.features-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.feature-card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(245,158,11,.15);
+padding:30px;
+border-radius:22px;
+transition:.35s;
+}
+
+.feature-card:hover{
+transform:translateY(-8px);
+border-color:#F59E0B;
+}
+
+.feature-icon{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.feature-card h3{
+margin-bottom:10px;
+color:#FBBF24;
+}
+
+/* ==========================
+   GALLERY
+========================== */
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.gallery-grid img{
+width:100%;
+height:280px;
+object-fit:cover;
+border-radius:20px;
+transition:.4s;
+}
+
+.gallery-grid img:hover{
+transform:scale(1.04);
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer{
+padding:70px 6%;
+text-align:center;
+border-top:1px solid rgba(245,158,11,.15);
+}
+
+footer h2{
+color:#FBBF24;
+margin-bottom:15px;
+}
+
+.footer-links{
+margin:25px 0;
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.footer-links a{
+text-decoration:none;
+color:white;
+}
+
+.footer-links a:hover{
+color:#FBBF24;
+}
+
+.copyright{
+opacity:.7;
+margin-top:25px;
+}
+
+</style>
+
 <script>
 
+/* ==========================
+   MOBILE MENU
+========================== */
+
 function toggleMenu(){
-document.getElementById("navLinks")
+document
+.getElementById("navLinks")
 .classList.toggle("active");
 }
 
+/* ==========================
+   STUDENT SEARCH
+========================== */
+
+function searchStudent(){
+
+const id =
+document
+.getElementById("studentIdSearch")
+.value
+.trim()
+.toUpperCase();
+
+if(!id){
+alert("Enter Library ID");
+return;
+}
+
+window.location.href =
+"student.html?id=" + id;
+
+}
+
+/* ==========================
+   LIBRARY ID GENERATOR
+========================== */
+
+function generateLibraryId(){
+
+let counter =
+localStorage.getItem("libraryCounter");
+
+if(!counter){
+counter = 1;
+}else{
+counter = parseInt(counter) + 1;
+}
+
+localStorage.setItem(
+"libraryCounter",
+counter
+);
+
+return "EL26" +
+String(counter).padStart(5,"0");
+
+}
+
+/* ==========================
+   REGISTRATION
+========================== */
+
 document
 .getElementById("registrationForm")
-.addEventListener("submit",function(e){
+.addEventListener("submit",
+
+function(e){
 
 e.preventDefault();
 
+let students =
+JSON.parse(
+localStorage.getItem("students")
+) || [];
+
+const libraryId =
+generateLibraryId();
+
+const today =
+new Date();
+
+const nextDue =
+new Date(today);
+
+nextDue.setMonth(
+nextDue.getMonth()+1
+);
+
+const student = {
+
+id:libraryId,
+
+name:
+document
+.getElementById("name")
+.value,
+
+fatherName:
+document
+.getElementById("fatherName")
+.value,
+
+mobile:
+document
+.getElementById("mobile")
+.value,
+
+email:
+document
+.getElementById("email")
+.value,
+
+course:
+document
+.getElementById("course")
+.value,
+
+fee:
+document
+.getElementById("fee")
+.value,
+
+joiningDate:
+document
+.getElementById("joiningDate")
+.value,
+
+address:
+document
+.getElementById("address")
+.value,
+
+status:"Active",
+
+registeredAt:
+new Date().toISOString(),
+
+nextDueDate:
+nextDue.toISOString().split("T")[0]
+
+};
+
+students.push(student);
+
+localStorage.setItem(
+"students",
+JSON.stringify(students)
+);
+
 alert(
-"Registration submitted successfully! Supabase integration will be added next."
+"Registration Successful!\n\nLibrary ID: "
++ libraryId +
+"\n\nSave this ID carefully."
 );
 
 this.reset();
 
 });
+
+/* ==========================
+   FIRST RUN SAMPLE
+========================== */
+
+if(
+!localStorage.getItem("students")
+){
+
+localStorage.setItem(
+"students",
+JSON.stringify([])
+);
+
+}
 
 </script>
 
