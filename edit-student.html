@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Edit Student | Education Library
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+
+background:#0B1120;
+color:white;
+min-height:100vh;
+
+}
+
+header{
+
+padding:20px 6%;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:
+rgba(15,23,42,.95);
+
+border-bottom:
+1px solid rgba(245,158,11,.15);
+
+position:sticky;
+top:0;
+z-index:999;
+
+}
+
+.logo{
+
+font-size:30px;
+font-weight:900;
+color:#FBBF24;
+
+}
+
+.logo span{
+color:white;
+}
+
+.back-btn{
+
+padding:12px 18px;
+
+background:#F59E0B;
+
+border:none;
+
+border-radius:12px;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+.container{
+
+max-width:1100px;
+
+margin:auto;
+
+padding:50px 20px;
+
+}
+
+.form-card{
+
+background:
+linear-gradient(
+135deg,
+rgba(245,158,11,.12),
+rgba(255,255,255,.03)
+);
+
+border:
+1px solid rgba(245,158,11,.15);
+
+padding:35px;
+
+border-radius:25px;
+
+}
+
+.title{
+
+font-size:34px;
+
+font-weight:900;
+
+color:#FBBF24;
+
+margin-bottom:30px;
+
+text-align:center;
+
+}
+
+.form-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:20px;
+
+}
+
+.input-group{
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.input-group label{
+
+margin-bottom:8px;
+
+font-weight:600;
+
+}
+
+.input-group input,
+.input-group textarea{
+
+padding:15px;
+
+border:none;
+
+outline:none;
+
+border-radius:12px;
+
+background:#1E293B;
+
+color:white;
+
+}
+
+textarea{
+
+resize:vertical;
+
+min-height:120px;
+
+}
+
+.photo-section{
+
+margin-bottom:30px;
+
+text-align:center;
+
+}
+
+.preview{
+
+width:180px;
+height:180px;
+
+border-radius:20px;
+
+object-fit:cover;
+
+border:
+3px solid rgba(245,158,11,.3);
+
+margin-bottom:15px;
+
+background:#1E293B;
+
+}
+
+.save-btn{
+
+width:100%;
+
+margin-top:30px;
+
+padding:18px;
+
+border:none;
+
+border-radius:15px;
+
+font-size:18px;
+
+font-weight:800;
+
+cursor:pointer;
+
+background:#F59E0B;
+
+color:black;
+
+}
+
+.not-found{
+
+text-align:center;
+
+padding:100px 20px;
+
+display:none;
+
+}
+
+.not-found h1{
+
+font-size:50px;
+
+color:#EF4444;
+
+margin-bottom:20px;
+
+}
+
+@media(max-width:768px){
+
+.form-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.title{
+
+font-size:28px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+Education <span>Library</span>
+</div>
+
+<button
+class="back-btn"
+onclick="window.location.href='admin.html'">
+
+Back To Admin
+
+</button>
+
+</header>
+
+<div class="container">
+
+<div
+id="editContainer"
+class="form-card">
+
+<h1 class="title">
+Edit Student
+</h1>
+
+<div class="photo-section">
+
+<img
+id="photoPreview"
+class="preview"
+src="">
+
+<br>
+
+<input
+type="file"
+id="photo"
+accept="image/*">
+
+</div>
+
+<form id="editForm">
+
+<div class="form-grid">
+
+<div class="input-group">
+
+<label>
+Full Name
+</label>
+
+<input
+type="text"
+id="name"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>
+Father Name
+</label>
+
+<input
+type="text"
+id="fatherName">
+
+</div>
+
+<div class="input-group">
+
+<label>
+Mobile Number
+</label>
+
+<input
+type="text"
+id="mobile">
+
+</div>
+
+<div class="input-group">
+
+<label>
+Email
+</label>
+
+<input
+type="email"
+id="email">
+
+</div>
+<div class="input-group">
+
+<label>
+Course
+</label>
+
+<input
+type="text"
+id="course">
+
+</div>
+
+<div class="input-group">
+
+<label>
+Monthly Fee
+</label>
+
+<input
+type="number"
+id="fee">
+
+</div>
+
+<div class="input-group">
+
+<label>
+Joining Date
+</label>
+
+<input
+type="date"
+id="joiningDate">
+
+</div>
+
+<div class="input-group">
+
+<label>
+Next Due Date
+</label>
+
+<input
+type="date"
+id="nextDueDate">
+
+</div>
+
+</div>
+
+<div
+class="input-group"
+style="margin-top:20px;">
+
+<label>
+Address
+</label>
+
+<textarea
+id="address"></textarea>
+
+</div>
+
+<button
+type="submit"
+class="save-btn">
+
+Update Student
+
+</button>
+
+</form>
+
+</div>
+
+<div
+id="notFound"
+class="not-found">
+
+<h1>
+Student Not Found
+</h1>
+
+<p>
+No matching student record exists.
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+/* ==========================
+   GET STUDENT ID
+========================== */
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const studentId =
+params.get("id");
+
+let students =
+JSON.parse(
+localStorage.getItem("students")
+) || [];
+
+let currentStudent = null;
+
+/* ==========================
+   IMAGE PREVIEW
+========================== */
+
+document
+.getElementById("photo")
+.addEventListener(
+"change",
+function(){
+
+const file =
+this.files[0];
+
+if(!file){
+return;
+}
+
+const reader =
+new FileReader();
+
+reader.onload =
+function(e){
+
+document
+.getElementById(
+"photoPreview"
+)
+.src =
+e.target.result;
+
+};
+
+reader.readAsDataURL(
+file
+);
+
+}
+);
+
+/* ==========================
+   LOAD STUDENT
+========================== */
+
+function loadStudent(){
+
+const student =
+students.find(
+s => s.id === studentId
+);
+
+if(!student){
+
+document
+.getElementById(
+"editContainer"
+)
+.style.display =
+"none";
+
+document
+.getElementById(
+"notFound"
+)
+.style.display =
+"block";
+
+return;
+
+}
+
+currentStudent =
+student;
+
+document
+.getElementById("name")
+.value =
+student.name || "";
+
+document
+.getElementById("fatherName")
+.value =
+student.fatherName || "";
+
+document
+.getElementById("mobile")
+.value =
+student.mobile || "";
+
+document
+.getElementById("email")
+.value =
+student.email || "";
+
+document
+.getElementById("course")
+.value =
+student.course || "";
+  document
+.getElementById("fee")
+.value =
+student.fee || "";
+
+document
+.getElementById("joiningDate")
+.value =
+student.joiningDate || "";
+
+document
+.getElementById("nextDueDate")
+.value =
+student.nextDueDate || "";
+
+document
+.getElementById("address")
+.value =
+student.address || "";
+
+document
+.getElementById("photoPreview")
+.src =
+student.photo ||
+"https://via.placeholder.com/180";
+
+}
+
+/* ==========================
+   IMAGE TO BASE64
+========================== */
+
+function convertImageToBase64(file){
+
+return new Promise(
+(resolve,reject)=>{
+
+const reader =
+new FileReader();
+
+reader.onload =
+() => resolve(
+reader.result
+);
+
+reader.onerror =
+error => reject(
+error
+);
+
+reader.readAsDataURL(
+file
+);
+
+});
+
+}
+
+/* ==========================
+   UPDATE STUDENT
+========================== */
+
+document
+.getElementById("editForm")
+.addEventListener(
+"submit",
+
+async function(e){
+
+e.preventDefault();
+
+const index =
+students.findIndex(
+s => s.id === studentId
+);
+
+if(index === -1){
+
+alert(
+"Student not found."
+);
+
+return;
+
+}
+
+let photoData =
+currentStudent.photo || "";
+
+const photoFile =
+document
+.getElementById("photo")
+.files[0];
+
+if(photoFile){
+
+photoData =
+await convertImageToBase64(
+photoFile
+);
+
+}
+
+students[index] = {
+
+...students[index],
+
+photo:photoData,
+
+name:
+document
+.getElementById("name")
+.value
+.trim(),
+
+fatherName:
+document
+.getElementById("fatherName")
+.value
+.trim(),
+
+mobile:
+document
+.getElementById("mobile")
+.value
+.trim(),
+
+email:
+document
+.getElementById("email")
+.value
+.trim(),
+
+course:
+document
+.getElementById("course")
+.value
+.trim(),
+
+fee:
+document
+.getElementById("fee")
+.value
+.trim(),
+  joiningDate:
+document
+.getElementById("joiningDate")
+.value,
+
+nextDueDate:
+document
+.getElementById("nextDueDate")
+.value,
+
+address:
+document
+.getElementById("address")
+.value
+.trim()
+
+};
+
+localStorage.setItem(
+"students",
+JSON.stringify(students)
+);
+
+alert(
+"Student Updated Successfully"
+);
+
+window.location.href =
+"admin.html";
+
+}
+);
+
+/* ==========================
+   INITIALIZE
+========================== */
+
+loadStudent();
+
+</script>
+
+</body>
+
+</html>
