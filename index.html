@@ -471,7 +471,10 @@ Become a member of Education Library.
 
 <div class="input-group">
 <label>Photo</label>
-<input type="file" id="photo">
+<input
+type="file"
+id="photo"
+accept="image/*">
 </div>
 
 <div class="input-group full">
@@ -758,14 +761,15 @@ String(counter).padStart(5,"0");
 }
 
 /* ==========================
+ /* ==========================
    REGISTRATION
 ========================== */
 
 document
 .getElementById("registrationForm")
-.addEventListener("submit",
-
-function(e){
+.addEventListener(
+"submit",
+async function(e){
 
 e.preventDefault();
 
@@ -787,39 +791,62 @@ nextDue.setMonth(
 nextDue.getMonth()+1
 );
 
+let photoData = "";
+
+const photoInput =
+document.getElementById("photo");
+
+if(
+photoInput.files &&
+photoInput.files[0]
+){
+
+photoData =
+await convertImageToBase64(
+photoInput.files[0]
+);
+
+}
+
 const student = {
 
-id:libraryId,
+id: libraryId,
 
 name:
 document
 .getElementById("name")
-.value,
+.value
+.trim(),
 
 fatherName:
 document
 .getElementById("fatherName")
-.value,
+.value
+.trim(),
 
 mobile:
 document
 .getElementById("mobile")
-.value,
+.value
+.trim(),
 
 email:
 document
 .getElementById("email")
-.value,
+.value
+.trim(),
 
 course:
 document
 .getElementById("course")
-.value,
+.value
+.trim(),
 
 fee:
 document
 .getElementById("fee")
-.value,
+.value
+.trim(),
 
 joiningDate:
 document
@@ -829,7 +856,10 @@ document
 address:
 document
 .getElementById("address")
-.value,
+.value
+.trim(),
+
+photo: photoData,
 
 status:"Active",
 
@@ -837,7 +867,9 @@ registeredAt:
 new Date().toISOString(),
 
 nextDueDate:
-nextDue.toISOString().split("T")[0]
+nextDue
+.toISOString()
+.split("T")[0]
 
 };
 
@@ -849,14 +881,43 @@ JSON.stringify(students)
 );
 
 alert(
-"Registration Successful!\n\nLibrary ID: "
-+ libraryId +
-"\n\nSave this ID carefully."
+`Registration Successful!
+
+Library ID:
+${libraryId}
+
+Save this ID carefully.`
 );
 
 this.reset();
 
 });
+/* ==========================
+   IMAGE TO BASE64
+========================== */
+
+function convertImageToBase64(file){
+
+return new Promise(
+(resolve,reject)=>{
+
+const reader =
+new FileReader();
+
+reader.onload = function(){
+
+resolve(reader.result);
+
+};
+
+reader.onerror =
+reject;
+
+reader.readAsDataURL(file);
+
+});
+
+}
 
 /* ==========================
    FIRST RUN SAMPLE
